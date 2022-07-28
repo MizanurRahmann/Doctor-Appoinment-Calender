@@ -6,12 +6,15 @@ import { getMonth } from "../utils/dateGenerator";
 // components
 import CalenderBody from "../components/CalenderBody.js/CalenderBody";
 import CalenderHeader from "../components/CalenderHeader/CalenderHeader";
+import AppoinmentForm from "../components/AppoinmentForm/AppoinmentForm";
 
 
 
 function Home() {
   const [currenMonth, setCurrentMonth] = useState([]);
   const [date, setDate] = useState({month: (dayjs().month() + 1), year: dayjs().year()});
+  const [openModal, setOpenModal] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
   const { year, month } = useParams();
@@ -38,8 +41,10 @@ function Home() {
   
   return (
     <div>
-      <CalenderHeader date={date} setDate={setDate} />
+      <CalenderHeader date={date} setDate={setDate} setOpenModal={setOpenModal} />
       <CalenderBody currenMonth={currenMonth} />
+
+      { openModal && <AppoinmentForm setOpenModal={setOpenModal} /> }
     </div>
   );
 }

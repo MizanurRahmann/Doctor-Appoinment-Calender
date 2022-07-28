@@ -11,7 +11,12 @@ export function getMonth(month = (dayjs().month() + 1), year = dayjs().year()) {
   const daysMatrix = new Array(6).fill([]).map(() => {
     return new Array(7).fill(null).map(() => {
       currentMonthCount++;
-      return dayjs(new Date(year, month, currentMonthCount));
+      const data = {
+        appoinments:  [],
+        ...dayjs(new Date(year, month, currentMonthCount))
+      };
+
+      return data;
     });
   });
 

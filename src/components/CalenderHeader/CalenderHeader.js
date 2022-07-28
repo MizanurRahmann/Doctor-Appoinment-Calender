@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function CalenderHeader({ date, setDate }) {
+function CalenderHeader({ date, setDate, setOpenModal }) {
   const navigate = useNavigate();
   
   // Change date and navigate to another route
@@ -48,7 +48,7 @@ function CalenderHeader({ date, setDate }) {
         </form>
       </div>
 
-      <button>Make an appoinment</button>
+      <button onClick={() => setOpenModal(true)}>Make an appoinment</button>
     </div>
   );
 }
