@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from "react";
 
-function CalenderBody() {
-  return (
-    <div>CalenderBody</div>
-  )
+function CalenderBody({currenMonth}) {
+  
+    useEffect(() => {
+    console.log(currenMonth);
+  });
+
+  return <div>
+    OK
+  </div>;
 }
 
-export default CalenderBody
+export default CalenderBody;

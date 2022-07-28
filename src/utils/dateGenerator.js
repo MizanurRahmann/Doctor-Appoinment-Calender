@@ -2,8 +2,8 @@ import dayjs from "dayjs";
 
 
 // GENERATE DAY MATRIX
-export function getMonth(month = dayjs().month(), year = dayjs().year()) {
-  month = Math.floor(month);
+export function getMonth(month = (dayjs().month() + 1), year = dayjs().year()) {
+  month = Math.floor(month) - 1;
 
   const firstDayOfTheMonth = dayjs(new Date(year, month, 1)).day();
   let currentMonthCount = 0 - firstDayOfTheMonth;
