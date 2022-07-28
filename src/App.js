@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { getMonth } from './utils/dateGenerator';
+import { Routes, Route } from "react-router-dom";
+
+// PAGES
+import Home from './pages/Home';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
+  useEffect(() => {
+    const month = getMonth(3);
+    console.log(month);
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </div>
   );
 }
