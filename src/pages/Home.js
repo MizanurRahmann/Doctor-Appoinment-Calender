@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getAppoinmentData } from "../redux/appoinments/appoinmentAction";
 import { getMonth } from "../utils/dateGenerator";
 
 // components
@@ -15,8 +17,8 @@ function Home() {
   const [openModal, setOpenModal] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const { year, month } = useParams();
-  
   
   /* If it is root route then go to the calender page according to todays date
   otherwise just change the local date state according to param */
@@ -28,7 +30,6 @@ function Home() {
     }
   }, [location.pathname]);
   
-  
   /* Change date matrix accordinf to date state */
   useEffect(() => {
     const m = date ? date.month : dayjs().month() + 1;
@@ -37,6 +38,12 @@ function Home() {
     const dateMatrix = getMonth(m, y);
     setCurrentMonth(dateMatrix);
   }, [date]);
+
+  /* Get previous appoinments data that is saved into local storage */
+  useEffect(() => {
+    let list = JSON.parse(localStorage.getItem("appoinments"));
+    dispatch(getAppoinmentData(list));
+  }, []);
 
   
   return (
