@@ -9,15 +9,14 @@ import CalenderHeader from "../components/CalenderHeader/CalenderHeader";
 import AppoinmentForm from "../components/AppoinmentForm/AppoinmentForm";
 
 
-
 function Home() {
   const [currenMonth, setCurrentMonth] = useState([]);
   const [date, setDate] = useState({month: (dayjs().month() + 1), year: dayjs().year()});
   const [openModal, setOpenModal] = useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
   const { year, month } = useParams();
+  
   
   /* If it is root route then go to the calender page according to todays date
   otherwise just change the local date state according to param */
@@ -28,6 +27,7 @@ function Home() {
       setDate({month: month, year: year});
     }
   }, [location.pathname]);
+  
   
   /* Change date matrix accordinf to date state */
   useEffect(() => {

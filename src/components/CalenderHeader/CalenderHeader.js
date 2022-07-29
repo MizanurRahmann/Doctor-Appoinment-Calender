@@ -12,7 +12,6 @@ function CalenderHeader({ date, setDate, setOpenModal }) {
   return (
     <div className="py-3 px-5 d-flex align-items-cente justify-content-between border-bottom">
       <div className="d-flex align-items-cente justify-content-between">
-        <h3>Appoinment</h3>
         <form className="d-flex align-items-cente justify-content-between ms-4">
           {/* Drodown - year */}
           <select 

@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
 
 // PAGES
 import Home from './pages/Home';
@@ -13,6 +14,7 @@ function App() {
         <Route path="/year/:year/month/:month" element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <Toaster />
     </div>
   );
 }

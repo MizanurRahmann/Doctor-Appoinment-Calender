@@ -1,7 +1,11 @@
 import { Controller, useForm } from "react-hook-form";
 import { MuiPickersUtilsProvider, DatePicker, TimePicker, } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import toast from "react-hot-toast";
 import styled from "styled-components";
+// redux
+import { useDispatch } from "react-redux";
+import { addNewAppoinment } from "../../redux/appoinments/appoinmentAction";
 
 
 const FieldContainer = styled.div`
@@ -42,12 +46,16 @@ const FieldContainer = styled.div`
 `;
 
 
-function Appoinment() {
-  const { register, handleSubmit, control, formState: { errors }, } = useForm();
+function Appoinment({ controlClose }) {
+  const { register, handleSubmit, control, reset, formState: { errors }, } = useForm();
+  const dispatch = useDispatch()
   
   // Form submission logics
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(addNewAppoinment(data));
+    reset();
+    controlClose(true);
+    toast.success('Your appoinment is added.');
   };
 
   return (
@@ -59,6 +67,7 @@ function Appoinment() {
           <input
             type="text"
             name="name"
+            placeholder="Enter your name"
             {...register("name", { required: true, maxLength: 40 })}
           />
           {errors.name?.type === "required" && (<span>First name is required.</span>)}
@@ -71,6 +80,7 @@ function Appoinment() {
           <input
             type="number"
             name="age"
+            placeholder="Enter your age"
             {...register("age", { required: true, min: 5, max: 100 })}
           />
           {errors.age?.type === "required" && <span>Age is required.</span>}
@@ -83,8 +93,8 @@ function Appoinment() {
         <FieldContainer>
           <label>Gender</label>
           <select {...register("gender")}>
-            <option value="female">Female</option>
             <option value="male">Male</option>
+            <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
         </FieldContainer>
@@ -96,7 +106,7 @@ function Appoinment() {
             <Controller
               name="date"
               control={control}
-              defaultValue={null}
+              defaultValue={new Date()}
               render={({ field, ...props }) => (
                 <DatePicker
                   value={field.value}
@@ -114,7 +124,7 @@ function Appoinment() {
             <Controller
               name="time"
               control={control}
-              defaultValue={null}
+              defaultValue={new Date()}
               render={({ field, ...props }) => (
                 <TimePicker
                   value={field.value}

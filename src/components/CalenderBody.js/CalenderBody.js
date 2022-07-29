@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import Day from "./Day";
 
 const Box = styled.div`
   width: 14.1%;
@@ -19,13 +20,14 @@ const Box = styled.div`
     border-bottom: 1px solid #dadce0;
   }
   p{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
+    margin-bottom: 10px;
   }
 `;
 
@@ -37,7 +39,7 @@ function CalenderBody({ currenMonth }) {
           <React.Fragment key={Math.random()}>
             {row.map((col) => (
               <Box key={Math.random()}>
-                <p>{col.$D}</p>
+                <Day day={col} />
               </Box>
             ))}
           </React.Fragment>
