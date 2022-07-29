@@ -3,6 +3,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { deleteAnAppoinment } from "../../redux/appoinments/appoinmentAction";
 import styled from "styled-components";
+import toast from "react-hot-toast";
 
 const Name = styled.div`
   width: 120px;
@@ -70,6 +71,7 @@ function DayDetailBody({ info, controlClose }) {
   const deleteAppoinment = () => {
     dispatch(deleteAnAppoinment(info));
     controlClose(true);
+    toast.success("Appoinment deleted successfully.")
   };
 
   // SETUP DATE STRING TO SHOW IN UI
