@@ -3,13 +3,36 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import DayDetails from "./DayDetails";
 
+
+const AppoinmentBox = styled.div`
+  width: 100%;
+  height: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+    background-color: transparent;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar {
+	  width: 5px;
+	  background-color: #F2f2f2;
+  }
+  &::-webkit-scrollbar-thumb {
+	  background-color: gray;
+    border-radius: 10px;
+  }
+`;
+
 const AppoinmentCard = styled.div`
+  width: calc(100% - 5px);
   padding: 5px;
-  background: #377d71;
-  color: #fff;
+  background: #D7F2AE;
+  color: #365073;
   font-size: 11px;
   margin-bottom: 5px;
   border-radius: 3px;
+  overflow: hidden;
 `;
 const AppoinmentButton = styled.div`
   padding: 5px;
@@ -72,20 +95,15 @@ function Day({ day }) {
       {/* Date */}
       <p>{day.$D}</p>
 
-      <>
+      <AppoinmentBox>
         {/* Appoinment list */}
         {currentAppoinment &&
-          currentAppoinment.slice(0, 2).map((ap) => (
+          currentAppoinment.map((ap) => (
             <AppoinmentCard onClick={() => controlModal(ap)}>
               {ap.name}
             </AppoinmentCard>
           ))}
-
-        {/* See more button */}
-        {currentAppoinment && currentAppoinment.length > 2 && (
-          <AppoinmentButton>+ See More</AppoinmentButton>
-        )}
-      </>
+      </AppoinmentBox>
 
       {openModal && <DayDetails info={selectedAppoinment} setOpenModal={setOpenModal} />}
     </>

@@ -50,7 +50,7 @@ function ModalWrapper({ head, setOpenModal, children }) {
   // Control closing option
   const controlClose = () => {
     setClose(true);
-    setTimeout(() => { setOpenModal(false); }, 500);
+    setTimeout(() => { setOpenModal(false); }, 450);
   };
 
   // Clone the children and pass controlClose functin as parameter through children
