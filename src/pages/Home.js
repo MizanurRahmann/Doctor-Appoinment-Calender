@@ -42,7 +42,9 @@ function Home() {
   /* Get previous appoinments data that is saved into local storage */
   useEffect(() => {
     let list = JSON.parse(localStorage.getItem("appoinments"));
-    dispatch(getAppoinmentData(list));
+    if(list) {
+      dispatch(getAppoinmentData(list));
+    }
   }, []);
 
   

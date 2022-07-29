@@ -86,7 +86,7 @@ function Day({ day }) {
 
     // 4. Store them into a state to show in UI
     setCurrentAppoinment([...todaysAppoinments]);
-  }, []);
+  }, [appoinments]);
 
 
 
@@ -99,7 +99,7 @@ function Day({ day }) {
         {/* Appoinment list */}
         {currentAppoinment &&
           currentAppoinment.map((ap) => (
-            <AppoinmentCard onClick={() => controlModal(ap)}>
+            <AppoinmentCard onClick={() => controlModal(ap)} key={Math.random()}>
               {ap.name}
             </AppoinmentCard>
           ))}

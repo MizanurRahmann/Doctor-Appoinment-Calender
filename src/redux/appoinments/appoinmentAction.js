@@ -10,3 +10,8 @@ export const getAppoinmentData = (data) => (dispatch) => {
 export const addNewAppoinment = (newAppoinment) => (dispatch) => {
   dispatch({ type: ADD_APPOINMENT, payload: newAppoinment });
 };
+
+// Delete existing appoinemt
+export const deleteAnAppoinment = (appoinment) => (dispatch) => {
+  dispatch({ type: DELETE_APPOINMENT, payload: appoinment });
+};
